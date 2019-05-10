@@ -2,6 +2,8 @@ package com.criscastemendo.sprint3.Detalle;
 
 import android.util.Log;
 
+import com.criscastemendo.sprint3.Data.ContadorItem;
+
 import java.lang.ref.WeakReference;
 
 public class DetallePresenter implements DetalleContract.Presenter {
@@ -37,18 +39,12 @@ public class DetallePresenter implements DetalleContract.Presenter {
         // Log.e(TAG, "fetchData()");
 
         // set passed state
-        DetalleState state = router.getDataFromPreviousScreen();
-        if (state != null) {
-            viewModel.data = state.data;
+        ContadorItem contadorItem =model.fetchData();
+        if (contadorItem != null) {
+            viewModel.data = contadorItem.contador;
+            //viewModel.clicks = ;
         }
 
-        if (viewModel.data == null) {
-            // call the model
-            String data = model.fetchData();
-
-            // set initial state
-            viewModel.data = data;
-        }
 
         // update the view
         view.get().displayData(viewModel);

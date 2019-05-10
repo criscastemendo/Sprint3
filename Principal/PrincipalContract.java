@@ -1,6 +1,9 @@
 package com.criscastemendo.sprint3.Principal;
 
+import com.criscastemendo.sprint3.Data.ContadorItem;
+
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 interface PrincipalContract {
 
@@ -18,10 +21,16 @@ interface PrincipalContract {
         void injectRouter(Router router);
 
         void fetchData();
+
+        void addContadorToList();
+
+        void selectContadorListData(ContadorItem item);
     }
 
     interface Model {
         String fetchData();
+
+        void addContadorToList(List<ContadorItem> contadorItemList);
     }
 
     interface Router {
@@ -30,5 +39,9 @@ interface PrincipalContract {
         void passDataToNextScreen(PrincipalState state);
 
         PrincipalState getDataFromPreviousScreen();
+
+        void passDataToDetalleScreen(ContadorItem item);
+
+        void navigateToDetalleScreen();
     }
 }

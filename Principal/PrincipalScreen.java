@@ -4,6 +4,8 @@ import java.lang.ref.WeakReference;
 
 import android.support.v4.app.FragmentActivity;
 
+import com.criscastemendo.sprint3.app.AppMediator;
+
 public class PrincipalScreen {
 
     public static void configure(PrincipalContract.View view) {

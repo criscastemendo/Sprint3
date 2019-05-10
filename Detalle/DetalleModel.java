@@ -1,23 +1,23 @@
 package com.criscastemendo.sprint3.Detalle;
 
-import android.util.Log;
-
-import java.lang.ref.WeakReference;
-
-import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.FragmentActivity;
+import com.criscastemendo.sprint3.Data.ContadorItem;
+import com.criscastemendo.sprint3.Data.Repositorio;
 
 public class DetalleModel implements DetalleContract.Model {
 
     public static String TAG = DetalleModel.class.getSimpleName();
 
-    public DetalleModel() {
+    public Repositorio repositorio;
 
+    public DetalleModel(Repositorio repositorio) {
+        this.repositorio= repositorio;
     }
 
     @Override
-    public String fetchData() {
+    public ContadorItem fetchData() {
         // Log.e(TAG, "fetchData()");
-        return "Hello";
+
+        return repositorio.getContadorItem();
+
     }
 }

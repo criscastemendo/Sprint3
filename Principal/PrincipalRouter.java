@@ -4,6 +4,9 @@ import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 
+import com.criscastemendo.sprint3.Data.ContadorItem;
+import com.criscastemendo.sprint3.app.AppMediator;
+
 public class PrincipalRouter implements PrincipalContract.Router {
 
     public static String TAG = PrincipalRouter.class.getSimpleName();
@@ -30,5 +33,15 @@ public class PrincipalRouter implements PrincipalContract.Router {
     public PrincipalState getDataFromPreviousScreen() {
         PrincipalState state = mediator.getPrincipalState();
         return state;
+    }
+
+    @Override
+    public void passDataToDetalleScreen(ContadorItem item) {
+
+    }
+
+    @Override
+    public void navigateToDetalleScreen() {
+
     }
 }

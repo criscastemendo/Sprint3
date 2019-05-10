@@ -2,7 +2,11 @@ package com.criscastemendo.sprint3.Principal;
 
 import android.util.Log;
 
+import com.criscastemendo.sprint3.Data.ContadorItem;
+import com.criscastemendo.sprint3.app.AppMediator;
+
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 public class PrincipalPresenter implements PrincipalContract.Presenter {
 
@@ -12,6 +16,7 @@ public class PrincipalPresenter implements PrincipalContract.Presenter {
     private PrincipalViewModel viewModel;
     private PrincipalContract.Model model;
     private PrincipalContract.Router router;
+    private AppMediator mediator;
 
     public PrincipalPresenter(PrincipalState state) {
         viewModel = state;
@@ -39,15 +44,13 @@ public class PrincipalPresenter implements PrincipalContract.Presenter {
         // set passed state
         PrincipalState state = router.getDataFromPreviousScreen();
         if (state != null) {
-            viewModel.data = state.data;
+            viewModel.contadorItemList = state.contadorItemList;
         }
 
-        if (viewModel.data == null) {
-            // call the model
-            String data = model.fetchData();
+        if (viewModel.contadorItemList == null) {
 
-            // set initial state
-            viewModel.data = data;
+            viewModel.contadorItemList= new ArrayList<ContadorItem>();
+
         }
 
         // update the view
@@ -55,5 +58,23 @@ public class PrincipalPresenter implements PrincipalContract.Presenter {
 
     }
 
+    @Override
+    public void addContadorToList(){
+
+        if (viewModel.contadorItemList == null) {
+            viewModel.contadorItemList=new ArrayList();
+            model.addContadorToList(viewModel.contadorItemList);
+        }else{
+            model.addContadorToList(viewModel.contadorItemList);
+        }
+
+    }
+
+    @Override
+    public void selectContadorListData(ContadorItem item) {
+
+        router.passDataToDetalleScreen(item);
+        router.navigateToDetalleScreen();
+    }
 
 }

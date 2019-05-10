@@ -1,8 +1,11 @@
 package com.criscastemendo.sprint3.Detalle;
 
+import android.annotation.SuppressLint;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.criscastemendo.sprint3.R;
@@ -19,6 +22,13 @@ public class DetalleActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
+        @SuppressLint("WrongViewCast") FloatingActionButton btn= (FloatingActionButton) findViewById(R.id.floatingActionButton2);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //presenter.add();
+            }
+        });
         // do the setup
         DetalleScreen.configure(this);
     }
@@ -41,6 +51,7 @@ public class DetalleActivity
         //Log.e(TAG, "displayData()");
 
         // deal with the data
-        ((TextView) findViewById(R.id.data)).setText(viewModel.data);
+        ((TextView) findViewById(R.id.counter)).setText(viewModel.data);
+        ((TextView) findViewById(R.id.clicks)).setText(viewModel.clicks);
     }
 }

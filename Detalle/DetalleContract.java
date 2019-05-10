@@ -1,5 +1,7 @@
 package com.criscastemendo.sprint3.Detalle;
 
+import com.criscastemendo.sprint3.Data.ContadorItem;
+
 import java.lang.ref.WeakReference;
 
 interface DetalleContract {
@@ -21,7 +23,7 @@ interface DetalleContract {
     }
 
     interface Model {
-        String fetchData();
+        ContadorItem fetchData();
     }
 
     interface Router {

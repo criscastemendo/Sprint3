@@ -4,6 +4,8 @@ import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 
+import com.criscastemendo.sprint3.app.AppMediator;
+
 public class DetalleRouter implements DetalleContract.Router {
 
     public static String TAG = DetalleRouter.class.getSimpleName();
