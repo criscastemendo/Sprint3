@@ -28,9 +28,9 @@ interface PrincipalContract {
     }
 
     interface Model {
-        String fetchData();
+        List<ContadorItem> fetchData();
 
-        void addContadorToList(List<ContadorItem> contadorItemList);
+        void addContadorToList();
     }
 
     interface Router {

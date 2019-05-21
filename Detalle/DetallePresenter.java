@@ -5,6 +5,7 @@ import android.util.Log;
 import com.criscastemendo.sprint3.Data.ContadorItem;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class DetallePresenter implements DetalleContract.Presenter {
 
@@ -38,18 +39,19 @@ public class DetallePresenter implements DetalleContract.Presenter {
     public void fetchData() {
         // Log.e(TAG, "fetchData()");
 
-        // set passed state
-        ContadorItem contadorItem =model.fetchData();
-        if (contadorItem != null) {
-            viewModel.data = contadorItem.contador;
-            //viewModel.clicks = ;
-        }
-
-
-        // update the view
+        ContadorItem contadorItem = router.getDataFromPreviousScreen();
+        viewModel.contador=contadorItem.getContador();
+        viewModel.clicks=model.getClick();
         view.get().displayData(viewModel);
 
     }
 
+    @Override
+    public void aumentarContador(){
+
+        model.aumentarContador(router.getDataFromPreviousScreen().getId());
+        fetchData();
+
+    }
 
 }

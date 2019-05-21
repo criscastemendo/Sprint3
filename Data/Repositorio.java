@@ -2,14 +2,18 @@ package com.criscastemendo.sprint3.Data;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Repositorio {
-  private ContadorItem contadorItem;
-  private List<ContadorItem> contadorItemList;
+public class Repositorio implements RepositorioContract{
+
+  private List<ContadorItem> contadorItemList=new ArrayList<>();;
+
   private Context context;
   public static Repositorio INSTANCE;
-  private int cliks;
+
+  private int numcont = 0;
+  private int cliks = 0;
 
   public static Repositorio getInstance(Context context) {
     if (INSTANCE == null) {
@@ -18,34 +22,45 @@ public class Repositorio {
     return INSTANCE;
   }
 
-  public Repositorio(Context context) {
-    contadorItem= new ContadorItem();
-    contadorItem.contador=0;
-    contadorItem.id=0;
-    cliks=0;
+  public Repositorio(Context context) {this.context=context;
   }
 
-  public ContadorItem getContadorItem() {
-    return contadorItem;
+  @Override
+  public List<ContadorItem> getContadorItemList() {
+    return contadorItemList;
   }
 
-  public void setContadorItem(ContadorItem cont) {
-    this.contadorItem = cont;
+  @Override
+  public void setContadorItemList(List<ContadorItem> contadorItemList) {
+    this.contadorItemList = contadorItemList;
   }
 
+  @Override
+  public void nuevoContador(){
+
+    contadorItemList.add(new ContadorItem(numcont,0));
+
+    numcont++;
+
+  }
+  @Override
   public int getCliks() {
     return cliks;
   }
 
-  public void setCliks(int cliks) {
-    this.cliks = cliks;
+  @Override
+  public void setCliks(int cliks1) {
+    cliks = cliks1;
   }
 
-  public int add(int cont) {
-    return cont++;
+  @Override
+  public void sum(int cont) {
+
+    contadorItemList.get(cont).setContador(contadorItemList.get(cont).getContador()+1);
+
+    cliks++;
+
   }
 
-  public int addC(int cli) {
-    return cli++;
-  }
+
 }

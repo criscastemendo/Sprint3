@@ -1,9 +1,9 @@
 package com.criscastemendo.sprint3.Detalle;
 
-import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
 
+import com.criscastemendo.sprint3.Data.ContadorItem;
 import com.criscastemendo.sprint3.app.AppMediator;
 
 public class DetalleRouter implements DetalleContract.Router {
@@ -29,8 +29,8 @@ public class DetalleRouter implements DetalleContract.Router {
     }
 
     @Override
-    public DetalleState getDataFromPreviousScreen() {
-        DetalleState state = mediator.getDetalleState();
-        return state;
+    public ContadorItem getDataFromPreviousScreen() {
+        ContadorItem contadorItem = mediator.getContador();
+        return contadorItem;
     }
 }

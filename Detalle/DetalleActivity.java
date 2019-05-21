@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.criscastemendo.sprint3.R;
@@ -16,19 +17,22 @@ public class DetalleActivity
     public static String TAG = DetalleActivity.class.getSimpleName();
 
     private DetalleContract.Presenter presenter;
+    private Button contadorbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        @SuppressLint("WrongViewCast") FloatingActionButton btn= (FloatingActionButton) findViewById(R.id.floatingActionButton2);
-        btn.setOnClickListener(new View.OnClickListener() {
+        contadorbutton= findViewById(R.id.button2);
+
+        contadorbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //presenter.add();
+                presenter.aumentarContador();
             }
         });
+
         // do the setup
         DetalleScreen.configure(this);
     }
@@ -51,7 +55,7 @@ public class DetalleActivity
         //Log.e(TAG, "displayData()");
 
         // deal with the data
-        ((TextView) findViewById(R.id.counter)).setText(viewModel.data);
-        ((TextView) findViewById(R.id.clicks)).setText(viewModel.clicks);
+        ((TextView) findViewById(R.id.contador)).setText(String.valueOf(viewModel.contador));
+        ((TextView) findViewById(R.id.clicks)).setText(String.valueOf(viewModel.clicks));
     }
 }

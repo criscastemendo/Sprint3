@@ -6,6 +6,5 @@ import java.util.List;
 
 public class PrincipalViewModel {
 
-    public String data;
     public List<ContadorItem> contadorItemList;
 }

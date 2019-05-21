@@ -3,6 +3,8 @@ package com.criscastemendo.sprint3.Detalle;
 import com.criscastemendo.sprint3.Data.ContadorItem;
 import com.criscastemendo.sprint3.Data.Repositorio;
 
+import java.util.List;
+
 public class DetalleModel implements DetalleContract.Model {
 
     public static String TAG = DetalleModel.class.getSimpleName();
@@ -14,10 +16,24 @@ public class DetalleModel implements DetalleContract.Model {
     }
 
     @Override
-    public ContadorItem fetchData() {
+    public List<ContadorItem> fetchData() {
         // Log.e(TAG, "fetchData()");
 
-        return repositorio.getContadorItem();
+        return repositorio.getContadorItemList();
 
     }
+    @Override
+    public int getClick(){
+
+        return repositorio.getCliks();
+
+    }
+
+    @Override
+    public void aumentarContador(int i){
+
+        repositorio.sum(i);
+
+    }
+
 }

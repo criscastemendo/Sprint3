@@ -42,17 +42,10 @@ public class PrincipalPresenter implements PrincipalContract.Presenter {
         // Log.e(TAG, "fetchData()");
 
         // set passed state
-        PrincipalState state = router.getDataFromPreviousScreen();
-        if (state != null) {
-            viewModel.contadorItemList = state.contadorItemList;
-        }
-
-        if (viewModel.contadorItemList == null) {
-
-            viewModel.contadorItemList= new ArrayList<ContadorItem>();
-
-        }
-
+        viewModel.contadorItemList=model.fetchData();
+        PrincipalState state= router.getDataFromPreviousScreen();
+        state.contadorItemList=viewModel.contadorItemList;
+        router.passDataToNextScreen(state);
         // update the view
         view.get().displayData(viewModel);
 
@@ -61,18 +54,14 @@ public class PrincipalPresenter implements PrincipalContract.Presenter {
     @Override
     public void addContadorToList(){
 
-        if (viewModel.contadorItemList == null) {
-            viewModel.contadorItemList=new ArrayList();
-            model.addContadorToList(viewModel.contadorItemList);
-        }else{
-            model.addContadorToList(viewModel.contadorItemList);
-        }
+
+        model.addContadorToList();
+        fetchData();
 
     }
 
     @Override
     public void selectContadorListData(ContadorItem item) {
-
         router.passDataToDetalleScreen(item);
         router.navigateToDetalleScreen();
     }

@@ -57,7 +57,7 @@ public class PrincipalAdapter
   public void onBindViewHolder(final ViewHolder holder, int position) {
     holder.itemView.setTag(itemList.get(position));
     holder.itemView.setOnClickListener(clickListener);
-    holder.contentView.setText(itemList.get(position).contador);
+    holder.contentView.setText(String.valueOf(itemList.get(position).getContador()));
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {

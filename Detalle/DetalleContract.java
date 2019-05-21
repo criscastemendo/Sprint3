@@ -3,6 +3,7 @@ package com.criscastemendo.sprint3.Detalle;
 import com.criscastemendo.sprint3.Data.ContadorItem;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 interface DetalleContract {
 
@@ -20,10 +21,16 @@ interface DetalleContract {
         void injectRouter(Router router);
 
         void fetchData();
+
+        void aumentarContador();
     }
 
     interface Model {
-        ContadorItem fetchData();
+        List<ContadorItem> fetchData();
+
+        int getClick();
+
+        void aumentarContador(int i);
     }
 
     interface Router {
@@ -31,6 +38,6 @@ interface DetalleContract {
 
         void passDataToNextScreen(DetalleState state);
 
-        DetalleState getDataFromPreviousScreen();
+        ContadorItem getDataFromPreviousScreen();
     }
 }

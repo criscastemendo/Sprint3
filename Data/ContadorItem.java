@@ -2,8 +2,21 @@ package com.criscastemendo.sprint3.Data;
 
 public class ContadorItem {
 
-    public int id;
-    public int contador;
+    private int id;
+    private int contador;
+
+    public ContadorItem(int id, int contador){
+        this.id=id;
+        this.contador=contador;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getContador() {
         return contador;
@@ -12,10 +25,4 @@ public class ContadorItem {
     public void setContador(int contador) {
         this.contador = contador;
     }
-
-    public void contadorsum(int contador){
-        this.contador=contador++;
-    }
-
-
 }

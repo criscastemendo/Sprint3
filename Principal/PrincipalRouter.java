@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.Context;
 
 import com.criscastemendo.sprint3.Data.ContadorItem;
+import com.criscastemendo.sprint3.Detalle.DetalleActivity;
+import com.criscastemendo.sprint3.Detalle.DetalleState;
 import com.criscastemendo.sprint3.app.AppMediator;
 
 public class PrincipalRouter implements PrincipalContract.Router {
@@ -37,11 +39,14 @@ public class PrincipalRouter implements PrincipalContract.Router {
 
     @Override
     public void passDataToDetalleScreen(ContadorItem item) {
-
+        mediator.getContadorItem(item);
     }
 
     @Override
     public void navigateToDetalleScreen() {
+        Context context = mediator.getApplicationContext();
+        Intent intent = new Intent(context, DetalleActivity.class);
+        context.startActivity(intent);
 
     }
 }

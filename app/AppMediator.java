@@ -11,14 +11,12 @@ import java.util.List;
 public class AppMediator extends Application {
 
 
-  public int contador;
   private PrincipalState principalState;
   private DetalleState detalleState;
-  public List<ContadorItem> contadorItemList;
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
+  private ContadorItem contador;
+
+  public AppMediator() {
     principalState = new PrincipalState();
     detalleState = new DetalleState();
   }
@@ -27,15 +25,23 @@ public class AppMediator extends Application {
     return principalState;
   }
 
-  public void setPrincipalState(PrincipalState state) {
-    this.principalState = state;
+  public void setPrincipalState(PrincipalState principalState) {
+    this.principalState = principalState;
   }
 
-  public DetalleState getDetalleState() {
-    return this.detalleState;
+  public DetalleState getDetalleState () {
+    return detalleState;
   }
 
-  public void setDetalleState(DetalleState State) {
-    this.detalleState= State;
+  public void setDetalleState(DetalleState detalleState) {
+    this.detalleState = detalleState;
+  }
+
+  public ContadorItem getContador() {
+    return contador;
+  }
+
+  public void getContadorItem (ContadorItem contador) {
+    this.contador= contador;
   }
 }

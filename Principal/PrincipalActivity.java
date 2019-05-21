@@ -2,12 +2,12 @@ package com.criscastemendo.sprint3.Principal;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +21,7 @@ public class PrincipalActivity
 
     private PrincipalContract.Presenter presenter;
     private PrincipalAdapter listAdapter;
+    private Button addbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,12 @@ public class PrincipalActivity
         setContentView(R.layout.activity_principal);
 
 
-        @SuppressLint("WrongViewCast") FloatingActionButton btn= (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        btn.setOnClickListener(new View.OnClickListener() {
+        addbutton= findViewById(R.id.button);
+
+        addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            presenter.addContadorToList();
+                presenter.addContadorToList();
             }
         });
 
@@ -44,7 +46,7 @@ public class PrincipalActivity
                 presenter.selectContadorListData(item);
             }
         });
-        RecyclerView recyclerView = findViewById(R.id.category_list);
+        RecyclerView recyclerView = findViewById(R.id.contador_list);
         recyclerView.setAdapter(listAdapter);
         // do the setup
         PrincipalScreen.configure(this);
@@ -67,6 +69,7 @@ public class PrincipalActivity
     public void displayData(PrincipalViewModel viewModel) {
         //Log.e(TAG, "displayData()");
 
+        listAdapter.setItems(viewModel.contadorItemList);
         // deal with the data
         //((TextView) findViewById(R.id.data)).setText(viewModel.data);
     }
